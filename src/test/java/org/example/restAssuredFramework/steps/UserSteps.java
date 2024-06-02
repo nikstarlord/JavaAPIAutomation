@@ -3,9 +3,10 @@ package org.example.restAssuredFramework.steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.qameta.allure.Feature;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.Logger;
+import org.testng.Assert;
+import java.util.List;
 import org.example.restAssuredFramework.api.TodoApi;
 import org.example.restAssuredFramework.api.UserApi;
 import org.example.restAssuredFramework.config.Constants;
@@ -13,8 +14,6 @@ import org.example.restAssuredFramework.models.Todo;
 import org.example.restAssuredFramework.models.User;
 import org.example.restAssuredFramework.utils.JsonUtils;
 import org.example.restAssuredFramework.utils.LoggerUtils;
-import org.junit.Assert;
-import java.util.List;
 
 
 public class UserSteps {
@@ -49,10 +48,8 @@ public class UserSteps {
         for(User user : users){
             long totalTasks = todos.stream().filter(todo -> todo.userid == user.id).count();
             long completedTasks = todos.stream().filter(todo -> todo.userid == user.id && todo.completed).count();
-            Assert.assertTrue("User ID " + user.id + " has less than 50% tasks completed", totalTasks > 0 && ((double) completedTasks / totalTasks) > 0.5);
-            logger.info("User ID " + user.id + " has more than 50% tasks completed");
+            Assert.assertTrue(totalTasks > 0 && ((double) completedTasks / totalTasks) > (double) (percentage / 100),"User ID " + user.id + " has less than 50% tasks completed" );
+            logger.info("User ID {} has more than {}% tasks completed", user.id, percentage);
         }
     }
-
-
 }

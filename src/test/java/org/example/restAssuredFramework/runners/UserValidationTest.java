@@ -1,12 +1,8 @@
-package org.example.restAssuredFramework.steps;
+package org.example.restAssuredFramework.runners;
 
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
-import io.qameta.allure.Feature;
-import org.junit.runner.RunWith;
-
-@RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features",
         glue = {"org.example.restAssuredFramework.steps"},
@@ -17,6 +13,5 @@ import org.junit.runner.RunWith;
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 )
-
-public class UserValidationTest {
+public class UserValidationTest extends AbstractTestNGCucumberTests {
 }
