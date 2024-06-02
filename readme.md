@@ -30,7 +30,7 @@ mvn clean install
 Execute tests directly from the command line:
 
 ```shell
-mvn clean verify -Pallure-report
+mvn clean test
 ```
 This command: 
 1. Cleans the project
@@ -42,17 +42,12 @@ This command:
 2. Find the Test runner file named ``UserValidationTest``
 3. Right-click & select `Run` or `Debug`
 
-### 📈 Generating Allure Reports
-Allure Framework provides clear, concise, and visually appealing test reports. After running tests:
-1. Generate the report:
-```shell
-mvn allure:report
-```
-This creates the report in target/allure-results
-2. Serve the report(opens in your default browser):
+### 📈 Running Allure Reports
+Allure Framework provides clear, concise, and visually appealing test reports. After running tests:<br/>
+Serve the report(opens in your default browser):
 
 ```shell
-allure serve target/allure-results
+mvn allure:serve
 ```
 
 ## 🏗️ Architecture
